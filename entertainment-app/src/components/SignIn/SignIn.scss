@@ -1,0 +1,147 @@
+@function rem($rem-num) {
+  $result : ($rem-num / 16) + rem;
+  @return $result;
+}
+
+$animationDelay: 1;
+@for $i from 1 through 15 {
+  .projects div:nth-of-type(#{$i}) {
+    animation-delay: #{0.3+($i)/30}s;
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.auth {
+  background-color:var(--secondary-blue);
+  width: 100%;
+  border-radius: rem(20);
+  padding: 2rem;
+  text-align: center;
+  animation-name: fade-in;
+  animation-fill-mode: both;
+  animation-duration: .5s;
+  margin: 0 auto 0;
+  box-sizing: border-box;
+
+  h1 {
+    color:var(--true-white);
+    font-family:var(--outfit-light);
+    text-align: left;
+    font-size:rem(32);
+    padding: 0;
+    margin: 0;
+  }
+
+  form {
+    display:flex;
+    flex-direction: column;
+    margin-top: rem(33);
+    input {
+      background-color: transparent;
+      border-bottom: 1px solid var(--grey-blue);
+      border-right: none;
+      border-left: none;
+      border-top: none;
+      font-size: rem(15);
+      padding: rem(25);
+      color:var(--true-white)
+    }
+  }
+  span {
+    text-decoration: underline;
+    cursor:pointer;
+  }
+  button {
+    margin-top:rem(37);
+    color:var(--true-white);
+    height:rem(48);
+    background-color:var(--pink-red);
+    border-radius:rem(6);
+    border: none;
+    font-size: rem(15);
+    cursor: pointer;
+  }
+  p {
+    color: var(--true-white);
+    font-size: rem(15);
+  }
+}
+
+.test {
+  color: red;
+}
+
+//Error Form Styles
+.input-error {
+  border-bottom: var(--pink-red) solid 1px !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #999;
+}
+input:focus::-webkit-input-placeholder {
+  color: var(--true-white);
+}
+
+//button Style
+.button-style {
+  width: 100%;
+}
+
+.button-style:hover {
+  background-color: var(--true-white);
+  color:var(--secondary-blue);
+}
+
+.button-style:active {
+  background-color: var(--true-white);
+  color:var(--secondary-blue);
+}
+
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669F2;
+
+.google-btn {
+  height: 3rem;
+  margin-top: 1.5rem;
+  background-color: $google-blue;
+  border-radius: 0.375rem;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+  cursor: pointer;
+
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 72px;
+    height: 2.9rem;
+
+    border-top-right-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+    background-color: $white;
+  }
+  .google-icon {
+    margin-top: 7px;
+    width: 2rem;
+  }
+  .btn-text {
+    color: $white;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto", serif;
+  }
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");

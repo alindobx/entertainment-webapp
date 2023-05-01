@@ -1,0 +1,134 @@
+$primary-dark-blue:#10141E;
+$secondary-dark-blue:#161D2F;
+$true-white:#fff;
+$pink-red:#FC4747;
+$outfit-light:'Outfit', sans-serif;
+$grey-blue: rgba(90, 105, 143, 0.53);
+$grey: #a9a9a9;
+
+@function rem($rem-num) {
+  $result : ($rem-num / 16) + rem;
+  @return $result;
+}
+
+//Font Variables
+:root {
+
+--primary-background-blue: #{$primary-dark-blue};
+--secondary-blue:#{$secondary-dark-blue};
+--true-white: #{$true-white};
+--outfit-light: #{$outfit-light};
+--pink-red: #{$pink-red};
+--grey-blue: #{$grey-blue};
+--grey:#{grey};
+  button, figure {
+    margin: 0 auto;
+    padding: 0;
+  }
+  h1 {
+    font-family: var(--outfit-light);
+    color: var(--true-white);
+    font-size: rem(32);
+    padding: 0 rem(37) 0 !important;
+    font-weight: 300;
+  }
+  .dot {
+    height: rem(5);
+    width: rem(5);
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 rem(7) rem(2) rem(7);
+  }
+
+  .movie-icon {
+    filter: invert(42%) sepia(14%) saturate(1211%) hue-rotate(185deg) brightness(90%) contrast(82%);    padding-right:rem(10);
+    width:20%;
+  }
+}
+
+svg {
+  width: 83%;
+}
+
+.svg-inline--fa {
+  height: auto !important;
+}
+
+body {
+  background-color: var(--primary-background-blue);
+  min-height: 100vh;
+  place-content: center;
+  display:flex;
+  justify-items: center;
+  flex-direction: column;
+  margin: 0 auto 0;
+}
+
+#root {
+  display:flex;
+  justify-content: center;
+}
+
+.sign-card {
+  max-width:rem(400);
+  width: 100%;
+  header {
+    display:flex;
+    justify-content: center;
+  }
+}
+
+.container {
+  display:flex;
+  width: 90vw;
+  overflow: hidden;
+  margin-top: rem(37);
+  padding-bottom: rem(150);
+  //Auth & App.jsx
+  main {
+    display:flex;
+    justify-items: center;
+    flex-direction: column;
+    width:100%;
+    header {
+      display:flex;
+      padding: 0 rem(37) rem(10)
+    }
+    input {
+      background-color: transparent;
+      border:none;
+      font-family: var(--outfit-light);
+      font-size: rem(24);
+      padding:  0 rem(37);
+      color: var(--true-white)
+    }
+  }
+}
+
+.account {
+  display:flex;
+  align-self:flex-end;
+  flex-direction: column;
+  .active {
+    filter: none !important;
+  }
+  button {
+    background-color: #FC4747;
+    border: none;
+    color: var(--true-white);
+    font-size: rem(8);
+    padding: rem(5);
+    border-radius: rem(5);
+  }
+}
+
+.account-logo {
+  padding-top: rem(8) !important;
+}
+
+.active {
+  filter : invert(60%) sepia(96%) saturate(3943%) hue-rotate(330deg) brightness(97%) contrast(104%)
+}
+
+
