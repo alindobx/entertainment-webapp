@@ -58,7 +58,6 @@ svg {
 body {
   background-color: var(--primary-background-blue);
   min-height: 100vh;
-  place-content: center;
   display:flex;
   justify-items: center;
   flex-direction: column;
@@ -100,7 +99,8 @@ body {
       border:none;
       font-family: var(--outfit-light);
       font-size: rem(24);
-      padding:  0 rem(37);
+      padding:  0 rem(16);
+      width: 60%;
       color: var(--true-white)
     }
   }

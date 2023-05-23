@@ -3,7 +3,6 @@
   @return $result;
 }
 
-
 .thumbnail-image {
   width: rem(280);
   height: rem(174);
@@ -25,7 +24,7 @@
     .media-image {
       display: inline-block;
       position: relative;
-      .circle {
+      .circle, .marked {
         height: rem(32);
         width: rem(32);
         background-color: rgba(0, 0, 0, 0.50);

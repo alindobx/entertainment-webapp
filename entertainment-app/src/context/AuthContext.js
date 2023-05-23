@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import { signInWithGoogle } from "../components/firebase-congfig";
+import React from 'react';
 
 import {
     createUserWithEmailAndPassword,
@@ -8,11 +9,16 @@ import {
     onAuthStateChanged, signInWithPopup
 } from 'firebase/auth'
 import {auth} from "../components/firebase-congfig";
+import axios from "axios";
 
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({})
+    const [ myData, setMyData ] = useState([]);
+    const [ isBookMarked, setBookMarked ] = useState(true)
+    //identify event that was clicked and data coming in parameters
+
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
@@ -40,13 +46,37 @@ export const AuthContextProvider = ({ children }) => {
                 console.log(error);
             })
     }
+    //on HandleClick
+    const onHandleClick = async (e,media) => {
+        e.preventDefault()
+        // below captures the current events id number
+        const idResults = Number(e.currentTarget.id)
+        //below filters through the data and matches "id" to "id" of event
+        const updateObj = media.filter((obj) => {
+        //
+            if (obj.id === idResults) {
+                setBookMarked(prevState => !prevState)
+                console.log("current",obj.isBookmarked)
+                obj.isBookmarked = isBookMarked
+            }
+            return obj
+        })
+        console.log(updateObj);
+        await axios.patch(`https://moviedb-3.onrender.com/media/${idResults}`, {
+            isBookmarked: isBookMarked
+        }).then((res) => {
+            alert('Data Posted Successfully!');
+            console.log("what is being sent",isBookMarked);
+        })
+        console.log("bookmark", idResults )
+    }
 
     const signIn = (email,password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     return (
-        <UserContext.Provider value={{createUser, user, logout, signIn,google}}>
+        <UserContext.Provider value={{myData, createUser, user, logout, signIn,google,onHandleClick}}>
             {children}
         </UserContext.Provider>
     );

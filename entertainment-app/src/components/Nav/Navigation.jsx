@@ -8,14 +8,13 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 
-export default function Navigation(props) {
+export default function Navigation() {
     const {user, logout} = UserAuth();
     const navigate = useNavigate();
     const [colorTv,setTV] = useState(false);
     const [bookmark,setBookMark] = useState(false)
     const [film,setFilm] = useState(false);
     const [home,setHome] = useState(false);
-    const [active,setActive] = useState(1);
     const handleLogOut = async () => {
         try {
             await logout()

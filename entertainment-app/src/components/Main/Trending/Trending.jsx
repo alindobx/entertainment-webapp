@@ -1,10 +1,11 @@
 import arrow from "../../../assets/images/chevron-left-solid.svg";
-import json from "../../../assets/data/data.json";
-
-import {useState} from "react";
+import {DataContext} from "../../../App";
+import React from 'react';
+import {useState, useContext } from "react";
 
 export default function Trending  (){
-    const thumbnails = json.map((movie) => movie.thumbnail?.trending);
+    const { media } = useContext(DataContext)
+    const thumbnails = media.map((movie) => movie.thumbnail?.trending);
     const validThumbnails = thumbnails.filter((items) => items !== undefined);
     validThumbnails.forEach((validThumbnails, index) => index);
     let sliderNumber = 0;
