@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import { signInWithGoogle } from "../components/firebase-congfig";
+import { ToastContainer, toast } from "react-toastify";
 import React from 'react';
 
 import {
@@ -55,7 +56,7 @@ export const AuthContextProvider = ({ children }) => {
         const updateObj = media.filter((obj) => {
             if (obj.id === idResults) {
                 setBookMarked(prevState => !prevState)
-                console.log("current",obj.isBookmarked)
+                console.log("current",obj.isBookmarked, obj.title)
                 obj.isBookmarked = isBookMarked
             }
             return obj

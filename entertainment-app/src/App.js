@@ -14,11 +14,11 @@ import Bookmark from "./components/Bookmark/Bookmark";
 import Search from './components/Search/Search';
 import SearchForm from "./components/Search/SearchForm";
 
+
 export const DataContext = createContext(null);
 const App = () => {
     const [media, setMedia] = useState([]);
     const [delaySpinner,setSpinner] = useState({display:"block"})
-
 
     useEffect(() => {
         fetchData().then(res => console.log(res))
