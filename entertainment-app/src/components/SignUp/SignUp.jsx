@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { UserAuth } from '../../context/AuthContext';
 
-
 const SignUp = () =>  {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +37,7 @@ const SignUp = () =>  {
                         type="text"
                         placeholder="Password"
                     />
-                    <button className ="button-style">Login to your account</button>
+                    <button className ="button-style">Create your Account</button>
                 </form>
                 <p>Already have an account?<span><Link to='/'>Sign In</Link></span></p>
             </aside>

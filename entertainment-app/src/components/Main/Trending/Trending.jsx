@@ -1,14 +1,25 @@
 import arrow from "../../../assets/images/chevron-left-solid.svg";
-import json from "../../../assets/data/data.json";
-
-import {useState} from "react";
+import {DataContext} from "../../../App";
+import React from 'react';
+import {useState, useContext } from "react";
+import { UserAuth } from '../../../context/AuthContext';
+import './../Trending/Trending.scss';
+import movie from "../../../assets/images/icon-nav-movies.svg";
+import tv from "../../../assets/images/icon-nav-tv-series.svg";
 
 export default function Trending  (){
-    const thumbnails = json.map((movie) => movie.thumbnail?.trending);
+    const [ isMarked, setMarked ] = useState(false)
+    const { onHandleClick } = UserAuth();
+    const nextId = 0;
+    const { media } = useContext(DataContext)
+
+    const thumbnails = media.map((movie) => movie.thumbnail?.trending);
     const validThumbnails = thumbnails.filter((items) => items !== undefined);
     validThumbnails.forEach((validThumbnails, index) => index);
     let sliderNumber = 0;
     const [ animateLeftButton,setAnimateLeftButton ] = useState(sliderNumber);
+
+    console.log("data coming in", media)
 
     const sliderLength = (validThumbnails.length * 470) + ((validThumbnails.length - 1) * 43);
     const finalLength = sliderLength * 0.5068199841;
@@ -32,6 +43,16 @@ export default function Trending  (){
         buttonPushLogic(buttonPushed)
     }
 
+    const handleClick = async (e) => {
+        e.preventDefault();
+        try {
+            await onHandleClick(e,media,nextId);
+
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+
     return (
         <>
             <aside className="trending-container">
@@ -40,8 +61,31 @@ export default function Trending  (){
                 </button>
                 <div className="trending-frame">
                     <div  className="slider" style = {{transform:`translateX(${animateLeftButton}px)`}}>
-                        {validThumbnails && validThumbnails.map((movie,index) =>(
-                            <img key={index}  src={movie.small} alt="stars" />
+                        {media && media.map((item,index,id) =>(
+                            <div key={item.id} className="media-image">
+                                <img style={{position:"relative", zIndex:-6}}  src={item.thumbnail.regular.large} alt="stars" />
+                                <button
+                                        onClick={(e) => [handleClick(e),setMarked(id)] }
+                                        className={ item.isBookmarked === true
+                                            ? "marked trending" : "circle trending"}
+                                        data-ele={item.title}
+                                >
+                            </button>
+                                <div className="trending-banner">
+                                    <div className ="media-info">
+                                        <span className="year">{item.year}</span>
+                                        <span className="dot"></span>
+                                        <span className="movie"><img className="movie-icon"
+                                                                     style = {{borderRadius: 0}}
+                                                                     src={ item.category === "Movie" ? movie : tv }
+                                                                     alt="movie"/>
+                                            {item.category}</span>
+                                        <span className="dot"></span>
+                                        <span className="rating">{item.rating}</span>
+                                    </div>
+                                    <div className ="media-title">{item.title}</div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>

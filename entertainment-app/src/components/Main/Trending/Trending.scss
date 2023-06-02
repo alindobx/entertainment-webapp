@@ -1,0 +1,43 @@
+@function rem($rem-num) {
+  $result : ($rem-num / 16) + rem;
+  @return $result;
+}
+
+.trending {
+  height: 2rem;
+  width: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  top: 1.125rem;
+  right: 0.625rem;
+  position: absolute;
+  cursor: pointer;
+  border: none;
+}
+
+.trending-banner {
+  position:absolute;
+  font-family: var(--outfit-light);
+  color: #fff;
+  bottom: rem(31);
+  left: rem(31);
+  .media-title {
+    font-size:rem(27)
+  }
+  .movie-icon {
+    width:12%;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+  }
+  .dot {
+    background-color: #fff;
+  }
+
+}
+
+.media-image {
+  -webkit-box-shadow: inset 0px -81px 80px 31px rgb(0 0 0 / 82%);
+  -moz-box-shadow: inset 0px -81px 80px 31px rgb(0 0 0 / 82%);
+  box-shadow: inset 0px -81px 80px 31px rgb(0 0 0 / 82%);
+ position: relative;
+}

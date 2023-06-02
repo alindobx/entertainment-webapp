@@ -1,31 +1,75 @@
 import {NavLink} from "react-router-dom";
 import searchIcon from "../../assets/images/icon-search.svg";
 import React from "react";
-import {useContext, useState} from 'react';
-import SearchInput from "../../context/SearchInput";
-
+import {DataContext} from '../../App'
+import {useContext, useState } from 'react';
 
 export default function SearchForm () {
-    const { onChange } = useContext(SearchInput);
-    const [ search, setSearch ] = useState('')
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(search)
+    const { media } = useContext(DataContext)
+    const [ show, setShow ] = useState(false)
+    const [ state, setState ] = useState({
+        query: '',
+        list: []
+    });
+
+    const handleShowHide = () => {
+        setShow(true)
     }
+
+    const handleOnKeyDown = (e) => {
+        if( e.key === "Enter" ) {
+            e.preventDefault();
+            window.location.href = '/Search';
+            console.log("test",e.key)
+            const results = media.filter((post)=>{
+                if( e.target.value === "") return media;
+                return post.title.toLowerCase().includes(e.target.value.toLowerCase());
+            });
+            setState({
+                query: e.target.value,
+                list: results
+            });
+        }
+    }
+    const handleSubmit = (e) => {
+        const results = media.filter((post)=>{
+            if( e.target.value === "") return media;
+            return post.title.toLowerCase().includes(e.target.value.toLowerCase());
+        });
+        setState({
+            query: e.target.value,
+            list: results
+        });
+    }
+
+    const signInLocation = window.location.pathname;
+    console.log(signInLocation);
 
     return (
         <>
-            <NavLink to="/Search"><img src= { searchIcon } alt="search icon" /></NavLink>
-            <form onSubmit={handleSubmit} >
+            <form style={signInLocation === '/' ? {display: "none"} : {display: "block"}}>
+                <NavLink to='/Search' state={{from:{state}}}><span><img src= { searchIcon } alt="search icon" /></span></NavLink>
                 <input
-                    type ="text"
+                    type ="search"
                     placeholder="Search for movies or TV series"
-                    value = {search}
-                    onChange={(e)=> {
-                        setSearch(e.target.value);
-                        onChange(e.target.value);
-                    }}/>
+                    value = {state.query}
+                    onFocus = {handleShowHide}
+                    onKeyDown={handleOnKeyDown}
+                    onChange={handleSubmit}
+                    onBlur = {() => setShow(false)}
+                />
+
             </form>
+            <div className='search-terms' style={ show === true ? {display:"block"} : {display:"none"} }>
+                <ul>
+                    {state.query === ""
+                        ? ""
+                        : state.list.map((post) => {
+                            return <NavLink key={post.id} to="/Search" state={{from:{state}}}><li>{post.title}</li></NavLink>;
+                        })}
+                </ul>
+            </div>
         </>
     )
+
 }
