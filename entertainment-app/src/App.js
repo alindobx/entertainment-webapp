@@ -17,6 +17,9 @@ import SearchForm from "./components/Search/SearchForm";
 export const DataContext = createContext(null);
 const App = () => {
     const [media, setMedia] = useState([]);
+    const [delaySpinner,setSpinner] = useState({display:"block"})
+
+
     useEffect(() => {
         fetchData().then(res => console.log(res))
     },[])
@@ -25,11 +28,12 @@ const App = () => {
         const jsonData = await response.json();
         console.log("=================",jsonData)
         setMedia(jsonData)
+        setSpinner({display:"none"})
     }
 const location = useLocation();
   return (
     <>
-        <DataContext.Provider value = {{media}}>
+        <DataContext.Provider value = {{ media, delaySpinner }}>
             <AuthContextProvider>
                 <div className="container" style = {
                     location.pathname === "/"

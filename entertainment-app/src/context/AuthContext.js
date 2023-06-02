@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log(currentUser)
+            console.log("setter",currentUser)
             setUser(currentUser)
         })
         return () => {
@@ -53,7 +53,6 @@ export const AuthContextProvider = ({ children }) => {
         const idResults = Number(e.currentTarget.id)
         //below filters through the data and matches "id" to "id" of event
         const updateObj = media.filter((obj) => {
-        //
             if (obj.id === idResults) {
                 setBookMarked(prevState => !prevState)
                 console.log("current",obj.isBookmarked)

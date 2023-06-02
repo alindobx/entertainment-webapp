@@ -32,7 +32,6 @@ export default function SearchForm () {
         }
     }
     const handleSubmit = (e) => {
-        console.log('data',media)
         const results = media.filter((post)=>{
             if( e.target.value === "") return media;
             return post.title.toLowerCase().includes(e.target.value.toLowerCase());
@@ -41,13 +40,14 @@ export default function SearchForm () {
             query: e.target.value,
             list: results
         });
-        console.log("search results =====",results)
-        console.log("state-log", state.query, "state-list",state.list)
     }
+
+    const signInLocation = window.location.pathname;
+    console.log(signInLocation);
 
     return (
         <>
-            <form>
+            <form style={signInLocation === '/' ? {display: "none"} : {display: "block"}}>
                 <NavLink to='/Search' state={{from:{state}}}><span><img src= { searchIcon } alt="search icon" /></span></NavLink>
                 <input
                     type ="search"
@@ -57,7 +57,6 @@ export default function SearchForm () {
                     onKeyDown={handleOnKeyDown}
                     onChange={handleSubmit}
                     onBlur = {() => setShow(false)}
-
                 />
 
             </form>

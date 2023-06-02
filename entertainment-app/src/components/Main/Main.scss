@@ -37,10 +37,15 @@ header {
   }
 }
 
+.header-logo {
+  width:rem(50);
+  margin: 0 auto;
+}
+
 .trending-container {
   display:flex;
   position:relative;
-  height: rem(290);
+  height: rem(356);
   .trending-frame {
     overflow:hidden;
     .slider {
@@ -84,14 +89,9 @@ header {
   background-size:40%;
 }
 
-
-
-
-
 .animate-left {
   transform : translateX(rem(470px));
 }
-
 
 .left-arrow {
   background-color: transparent;
@@ -109,3 +109,4 @@ header {
   height: rem(290);
   transform: scaleX(-1);
 }
+

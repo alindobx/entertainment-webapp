@@ -10,20 +10,7 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
     const { onHandleClick } = UserAuth();
     const media = jsonRes;
     const page = window.location.pathname;
-    const bookMarkStyle = {
-        height: "32px",
-        width: "32px",
-        backgroundColor: "#fff",
-        borderRadius: "50%",
-        display: "inline-block",
-        top: "18px",
-        right: "58px",
-        position:"absolute",
-        cursor: "pointer",
-        border:"none",
-        backgroundImage:"url('icon-bookmark-full.png')",
-        backgroundSize:"40%"
-    }
+
     const handleClick = async (e) => {
         e.preventDefault();
         try {
@@ -42,7 +29,6 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
         console.log("Not Bookmark")
     }
 
-
     return (
     <div key={nextId++} className="thumbnail">
         {jsonRes && jsonRes.map( (item, id) =>  (
@@ -54,10 +40,10 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
                         <button
                             id={id}
                             onClick={(e) => [handleClick(e),setMarked(id)] }
-                            className={ (isMarked === id || page === '/Bookmark') ? 'marked' : "circle" }
-                            data-ele={item.title}
-                            // style = { page === '/Bookmark' ? bookMarkStyle : null }
-                        >
+                            className={item.isBookmarked === true
+                            ? "marked" : "circle"
+                        }
+                            data-ele={item.title}>
                         </button>
                     </div>
                     <div className ="media-info">

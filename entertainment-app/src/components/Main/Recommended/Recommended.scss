@@ -24,6 +24,7 @@
     .media-image {
       display: inline-block;
       position: relative;
+      box-shadow: none;
       .circle, .marked {
         height: rem(32);
         width: rem(32);

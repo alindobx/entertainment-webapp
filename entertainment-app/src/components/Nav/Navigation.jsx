@@ -7,7 +7,6 @@ import {UserAuth} from "../../context/AuthContext";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-
 export default function Navigation() {
     const {user, logout} = UserAuth();
     const navigate = useNavigate();
@@ -15,10 +14,16 @@ export default function Navigation() {
     const [bookmark,setBookMark] = useState(false)
     const [film,setFilm] = useState(false);
     const [home,setHome] = useState(false);
+
+    if(user===null)
+        console.log("user is pointing to null")
+    else
+        console.log("User Photo", user.photoURL)
+
     const handleLogOut = async () => {
         try {
             await logout()
-            navigate('/');
+            navigate('/Main');
             console.log("You are now logged out")
         } catch (e){
             console.log(e)
@@ -44,7 +49,6 @@ export default function Navigation() {
                 <NavLink
                     onMouseEnter={()=>{setFilm(true)}}
                     onMouseLeave={()=>{setFilm(false)}}
-                    // style = {styles.active}
                     activeclassname = "active"
                     to ='/Movies'
                 ><FontAwesomeIcon icon={faFilm} style ={styles.setFilm}  /></NavLink>
@@ -65,7 +69,9 @@ export default function Navigation() {
             </section>
             <section className="account">
                 <button  onClick={handleLogOut}>Log Out</button>
-                <NavLink className="account-logo active"><img src = {user.photoURL} alt="text"/></NavLink>
+                <NavLink className="account-logo active"><img style={
+                    user?.photoURL ? {display:"block"} : {display:"none"}
+                } src = {user?.photoURL} alt="text"/></NavLink>
             </section>
         </>
     )

@@ -1,5 +1,5 @@
 import './Recommended.scss';
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import {DataContext} from '../../../App'
 import React from 'react';
 import ThumbnailCreate from "../../Thumbnail/ThumbnailCreate";

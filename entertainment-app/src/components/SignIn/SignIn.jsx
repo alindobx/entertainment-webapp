@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext';
 import logo from "../../assets/images/logo.svg";
-
+import { signInWithGoogle } from "../firebase-congfig";
 
 
 export default function SignIn() {
@@ -25,7 +25,7 @@ export default function SignIn() {
         setError('')
         try {
             await signIn(email,password);
-            navigate('/account')
+            navigate('/Main')
         } catch (e) {
             setError(e.message)
             console.log(e.message)
@@ -59,7 +59,7 @@ export default function SignIn() {
     return (
         <>
             <main className ="sign-card">
-                <header><img src = {logo} alt="logo"/></header>
+                <header className="header-logo"><img src = {logo} alt="logo"/></header>
                 <aside className="auth">
                     <h1>Sign In</h1>
                     <form onSubmit={handleSignIn}>
