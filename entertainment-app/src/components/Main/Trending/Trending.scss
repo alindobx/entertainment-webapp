@@ -32,7 +32,6 @@
   .dot {
     background-color: #fff;
   }
-
 }
 
 .media-image {
@@ -40,4 +39,5 @@
   -moz-box-shadow: inset 0px -81px 80px 31px rgb(0 0 0 / 82%);
   box-shadow: inset 0px -81px 80px 31px rgb(0 0 0 / 82%);
  position: relative;
+  border-radius: rem(8);
 }

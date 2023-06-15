@@ -6,6 +6,7 @@ import { UserAuth } from '../../../context/AuthContext';
 import './../Trending/Trending.scss';
 import movie from "../../../assets/images/icon-nav-movies.svg";
 import tv from "../../../assets/images/icon-nav-tv-series.svg";
+import play from "../../../assets/images/icon-play.svg";
 
 export default function Trending  (){
     const [ isMarked, setMarked ] = useState(false)
@@ -66,6 +67,12 @@ export default function Trending  (){
                     <div  className="slider" style = {{transform:`translateX(${animateLeftButton}px)`}}>
                         {media && media.map((item,index,id) =>(
                             <div key={item.id} className="media-image">
+                                <div className="show-hide" style = {{height:"351px", width:"561px" }} >
+                                    <button>
+                                        <img src={play} alt="play cover"/>
+                                        <span>Play</span>
+                                    </button>
+                                </div>
                                 <img style={{position:"relative", zIndex:-6}}  src={
                                     windowWidth.current <= 800 ?
                                         item.thumbnail.regular.medium :
@@ -83,10 +90,11 @@ export default function Trending  (){
                                     <div className ="media-info">
                                         <span className="year">{item.year}</span>
                                         <span className="dot"></span>
-                                        <span className="movie"><img className="movie-icon"
-                                                                     style = {{borderRadius: 0}}
-                                                                     src={ item.category === "Movie" ? movie : tv }
-                                                                     alt="movie"/>
+                                        <span className="movie">
+                                            <img className="movie-icon"
+                                                 style = {{borderRadius: 0}}
+                                                 src={ item.category === "Movie" ? movie : tv }
+                                                 alt="movie"/>
                                             {item.category}</span>
                                         <span className="dot"></span>
                                         <span className="rating">{item.rating}</span>
