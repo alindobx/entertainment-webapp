@@ -3,6 +3,7 @@ import '../SignIn/SignIn.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { UserAuth } from '../../context/AuthContext';
+import logo from "../../assets/images/logo.svg";
 
 const SignUp = () =>  {
     const [email, setEmail] = useState('');
@@ -24,6 +25,7 @@ const SignUp = () =>  {
 
     return (
         <>
+            <header className="header-logo"><img src = {logo} alt="logo"/></header>
             <aside className="auth">
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit}>

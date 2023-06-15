@@ -3,10 +3,10 @@ import movie from "../../assets/images/icon-nav-movies.svg";
 import tv from "../../assets/images/icon-nav-tv-series.svg";
 import { UserAuth } from '../../context/AuthContext';
 import { useState } from 'react';
+import play from "../../assets/images/icon-play.svg";
 
 export default function ThumbnailCreate({nextId, jsonRes}) {
     const [ isMarked, setMarked ] = useState(false)
-    //onClick put the selected bookmarks in the database
     const { onHandleClick } = UserAuth();
     const media = jsonRes;
     const page = window.location.pathname;
@@ -20,21 +20,18 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
             console.log(e.message)
         }
     }
-
-    console.log("data coming in ======", jsonRes)
-
-    if ( page === '/Bookmark' ) {
-        console.log("Bookmark")
-    }else{
-        console.log("Not Bookmark")
-    }
-
     return (
     <div key={nextId++} className="thumbnail">
         {jsonRes && jsonRes.map( (item, id) =>  (
             <section key={item.id}>
                 <div className="thumbnail-container">
                     <div  className ="media-image">
+                        <div className="show-hide">
+                            <button>
+                                <img src={play} alt="play cover"/>
+                                <span>Play</span>
+                            </button>
+                        </div>
                         <img className="thumbnail-image"
                              src={item.thumbnail.regular.small} alt={item.title}/>
                         <button

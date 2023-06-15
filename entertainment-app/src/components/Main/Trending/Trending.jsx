@@ -1,7 +1,7 @@
 import arrow from "../../../assets/images/chevron-left-solid.svg";
 import {DataContext} from "../../../App";
 import React from 'react';
-import {useState, useContext } from "react";
+import {useState, useContext, useRef } from "react";
 import { UserAuth } from '../../../context/AuthContext';
 import './../Trending/Trending.scss';
 import movie from "../../../assets/images/icon-nav-movies.svg";
@@ -12,14 +12,17 @@ export default function Trending  (){
     const { onHandleClick } = UserAuth();
     const nextId = 0;
     const { media } = useContext(DataContext)
+    const windowWidth = useRef(window.innerWidth)
 
-    const thumbnails = media.map((movie) => movie.thumbnail?.trending);
+    const thumbnails = media.filter((movie) => movie.isTrending);
     const validThumbnails = thumbnails.filter((items) => items !== undefined);
     validThumbnails.forEach((validThumbnails, index) => index);
     let sliderNumber = 0;
     const [ animateLeftButton,setAnimateLeftButton ] = useState(sliderNumber);
 
     console.log("data coming in", media)
+    console.log("length",validThumbnails.length)
+    console.log("trending thumbnails",thumbnails)
 
     const sliderLength = (validThumbnails.length * 470) + ((validThumbnails.length - 1) * 43);
     const finalLength = sliderLength * 0.5068199841;
@@ -63,7 +66,12 @@ export default function Trending  (){
                     <div  className="slider" style = {{transform:`translateX(${animateLeftButton}px)`}}>
                         {media && media.map((item,index,id) =>(
                             <div key={item.id} className="media-image">
-                                <img style={{position:"relative", zIndex:-6}}  src={item.thumbnail.regular.large} alt="stars" />
+                                <img style={{position:"relative", zIndex:-6}}  src={
+                                    windowWidth.current <= 800 ?
+                                        item.thumbnail.regular.medium :
+                                        item.thumbnail.regular.large
+                                }
+                                     alt="stars" />
                                 <button
                                         onClick={(e) => [handleClick(e),setMarked(id)] }
                                         className={ item.isBookmarked === true

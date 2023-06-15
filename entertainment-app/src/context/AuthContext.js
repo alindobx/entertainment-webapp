@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import { signInWithGoogle } from "../components/firebase-congfig";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import React from 'react';
 
 import {
@@ -19,7 +20,6 @@ export const AuthContextProvider = ({ children }) => {
     const [ myData, setMyData ] = useState([]);
     const [ isBookMarked, setBookMarked ] = useState(true)
     //identify event that was clicked and data coming in parameters
-
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
@@ -47,9 +47,22 @@ export const AuthContextProvider = ({ children }) => {
                 console.log(error);
             })
     }
+    //notification object
+    const notify = () => {
+        toast.success("Your bookmark has been saved", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+        });
+    };
     //on HandleClick
     const onHandleClick = async (e,media) => {
-        e.preventDefault()
+        e.preventDefault();
         // below captures the current events id number
         const idResults = Number(e.currentTarget.id)
         //below filters through the data and matches "id" to "id" of event
@@ -66,6 +79,7 @@ export const AuthContextProvider = ({ children }) => {
             isBookmarked: isBookMarked
         }).then((res) => {
             alert('Data Posted Successfully!');
+            notify()
             console.log("what is being sent",isBookMarked);
         })
         console.log("bookmark", idResults )
@@ -78,6 +92,7 @@ export const AuthContextProvider = ({ children }) => {
     return (
         <UserContext.Provider value={{myData, createUser, user, logout, signIn,google,onHandleClick}}>
             {children}
+            <ToastContainer/>
         </UserContext.Provider>
     );
 };

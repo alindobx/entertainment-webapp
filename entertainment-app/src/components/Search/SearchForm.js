@@ -43,15 +43,17 @@ export default function SearchForm () {
     }
 
     const signInLocation = window.location.pathname;
-    console.log(signInLocation);
 
     return (
         <>
-            <form style={signInLocation === '/' ? {display: "none"} : {display: "block"}}>
-                <NavLink to='/Search' state={{from:{state}}}><span><img src= { searchIcon } alt="search icon" /></span></NavLink>
+            <form style={signInLocation === '/' || signInLocation === '/sign-up' ? {display: "none"} : {display: "flex"}}>
+                <NavLink className="search-icon" to='/Search' state={{from:{state}}}><span><img src= { searchIcon } alt="search icon" /></span></NavLink>
                 <input
                     type ="search"
-                    placeholder="Search for movies or TV series"
+                    placeholder= { signInLocation === "/Movies" ? "Search Movies"
+                        : signInLocation === "/Television" ? "Search TV Series"
+                            : "Search for Movies or TV Series"
+                        }
                     value = {state.query}
                     onFocus = {handleShowHide}
                     onKeyDown={handleOnKeyDown}

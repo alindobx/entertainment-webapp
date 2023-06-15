@@ -2,7 +2,7 @@ import '../Main/Recommended/Recommended.scss';
 import {useContext} from 'react';
 import {DataContext} from '../../App'
 import React from 'react';
-import ThumbnailCreate from "../../components/Thumbnail/ThumbnailCreate";
+import ThumbnailBookMark from "../Thumbnail/ThumbnailBookMark";
 
 export default function Bookmark(){
     const { media } = useContext(DataContext)
@@ -11,8 +11,7 @@ export default function Bookmark(){
 
     return(
         <>
-            <h1>Bookmark</h1>
-            <ThumbnailCreate jsonRes={jsonRes} nextId = {nextId} />
+            <ThumbnailBookMark jsonRes={jsonRes} nextId = {nextId} />
         </>
     )
 }

@@ -3,7 +3,6 @@ import React, {useContext} from 'react';
 import Trending from "./Trending/Trending";
 import Recommended from "./Recommended/Recommended";
 import {DataContext} from "../../App";
-
 export default function Main() {
     const { delaySpinner } = useContext(DataContext)
     return(

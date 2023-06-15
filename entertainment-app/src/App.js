@@ -39,10 +39,11 @@ const location = useLocation();
                     location.pathname === "/"
                     || location.pathname === "/sign-up"
                         ?  { maxWidth:"400px"}
-                        : {width: "90vw"}
+                        : {width: "93vw"}
                 }>
-                    { location.pathname === "/"
-                    || location.pathname === "/sign-up"
+                    { (location.pathname === "/"
+                    || location.pathname === "/sign-up")
+
                         ? <nav style={{display:"none"}}>
                             <Navigation />
                           </nav>:
