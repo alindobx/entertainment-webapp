@@ -21,10 +21,6 @@ export default function Trending  (){
     let sliderNumber = 0;
     const [ animateLeftButton,setAnimateLeftButton ] = useState(sliderNumber);
 
-    console.log("data coming in", media)
-    console.log("length",validThumbnails.length)
-    console.log("trending thumbnails",thumbnails)
-
     const sliderLength = (validThumbnails.length * 470) + ((validThumbnails.length - 1) * 43);
     const finalLength = sliderLength * 0.5068199841;
 
@@ -59,20 +55,20 @@ export default function Trending  (){
 
     return (
         <>
-            <aside className="trending-container">
+            <section className="trending-container">
                 <button onClick = { handleArrowButtons } className="left-arrow" value="left">
-                    <img onClick = { handleArrowClick } src={ arrow } alt="left"  />
+                    <figure><img onClick = { handleArrowClick } src={ arrow } alt="left" /></figure>
                 </button>
-                <div className="trending-frame">
-                    <div  className="slider" style = {{transform:`translateX(${animateLeftButton}px)`}}>
+                <article className="trending-frame">
+                    <section  className="slider" style = {{transform:`translateX(${animateLeftButton}px)`}}>
                         {media && media.map((item,index,id) =>(
-                            <div key={item.id} className="media-image">
-                                <div className="show-hide" style = {{height:"351px", width:"561px" }} >
+                            <figure key={item.id} className="media-image">
+                                <section className="show-hide" style = {{height:"351px", width:"561px" }} >
                                     <button>
                                         <img src={play} alt="play cover"/>
                                         <span>Play</span>
                                     </button>
-                                </div>
+                                </section>
                                 <img style={{position:"relative", zIndex:-6}}  src={
                                     windowWidth.current <= 800 ?
                                         item.thumbnail.regular.medium :
@@ -86,8 +82,8 @@ export default function Trending  (){
                                         data-ele={item.title}
                                 >
                             </button>
-                                <div className="trending-banner">
-                                    <div className ="media-info">
+                                <section className="trending-banner">
+                                    <article className ="media-info">
                                         <span className="year">{item.year}</span>
                                         <span className="dot"></span>
                                         <span className="movie">
@@ -98,17 +94,17 @@ export default function Trending  (){
                                             {item.category}</span>
                                         <span className="dot"></span>
                                         <span className="rating">{item.rating}</span>
-                                    </div>
-                                    <div className ="media-title">{item.title}</div>
-                                </div>
-                            </div>
+                                    </article>
+                                    <h1 className ="media-title">{item.title}</h1>
+                                </section>
+                            </figure>
                         ))}
-                    </div>
-                </div>
+                    </section>
+                </article>
                 <button onClick={ handleArrowButtons } className="right-arrow" value="right">
-                    <img onClick = { handleArrowClick } src={ arrow } alt="right"  />
+                    <img onClick = { handleArrowClick } src={ arrow } alt="right"/>
                 </button>
-            </aside>
+            </section>
         </>
     )
 }

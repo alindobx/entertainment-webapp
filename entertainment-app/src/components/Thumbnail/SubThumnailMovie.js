@@ -6,10 +6,10 @@ import React from "react";
 export default function SubThumbNailMovie({moveArr, nextId, func, setMarked})  {
     return(
         <>
-            <div key={nextId++} className="thumbnail">
+            <article key={nextId++} className="thumbnail">
                 { moveArr && moveArr.map( (item, id) =>  (
                         <section key={item.id}>
-                            <div className="thumbnail-container">
+                            <section className="thumbnail-container">
 
                                 <div className="show-hide">
                                     <button>
@@ -17,7 +17,7 @@ export default function SubThumbNailMovie({moveArr, nextId, func, setMarked})  {
                                         <span>Play</span>
                                     </button>
                                 </div>
-                                <div className ="media-image">
+                                <figure className ="media-image">
                                     <img className="thumbnail-image"
                                          src={item.thumbnail.regular.small} alt={item.title}/>
                                     <button
@@ -28,8 +28,8 @@ export default function SubThumbNailMovie({moveArr, nextId, func, setMarked})  {
                                         }
                                         data-ele={item.title}>
                                     </button>
-                                </div>
-                                <div className ="media-info">
+                                </figure>
+                                <figure className ="media-info">
                                     <span className="year">{item.year}</span>
                                     <span className="dot"></span>
                                     <span className="movie">
@@ -40,12 +40,12 @@ export default function SubThumbNailMovie({moveArr, nextId, func, setMarked})  {
                                         {item.category}</span>
                                     <span className="dot"></span>
                                     <span className="rating">{item.rating}</span>
-                                </div>
-                                <div className ="media-title">{item.title}</div>
-                            </div>
+                                </figure>
+                                <h1 className ="media-title">{item.title}</h1>
+                            </section>
                         </section>
                   ))}
-            </div>
+            </article>
         </>
     )
 }

@@ -35,7 +35,7 @@ const location = useLocation();
     <>
         <DataContext.Provider value = {{ media, delaySpinner }}>
             <AuthContextProvider>
-                <div className="container" style = {
+                <section className="container" style = {
                     location.pathname === "/"
                     || location.pathname === "/sign-up"
                         ?  { maxWidth:"400px"}
@@ -51,7 +51,7 @@ const location = useLocation();
                             <Navigation props ={location} />
                         </nav>
                     }
-                    <main>
+                    <article className = "main">
                         <header className="search">
                             <SearchForm />
                         </header>
@@ -64,8 +64,8 @@ const location = useLocation();
                             <Route path ='/search' element={<Search/>} />
                             <Route path="/Main" element={<ProtectedRoute><Main/></ProtectedRoute>} />
                         </Routes>
-                    </main>
-                </div>
+                    </article>
+                </section>
             </AuthContextProvider>
         </DataContext.Provider>
     </>

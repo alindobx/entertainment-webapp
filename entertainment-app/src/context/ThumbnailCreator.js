@@ -7,17 +7,17 @@ import tv from "../assets/images/icon-nav-tv-series.svg";
 
       thumbnail : (nextId,jsonRes,onHandleClick) => {
           return (
-              <div key={nextId++} className="thumbnail">
+              <article key={nextId++} className="thumbnail">
                   {jsonRes && jsonRes.map( ( item, index ) =>  (
                       <section key={item.id}>
-                          <div className="thumbnail-container">
-                              <div  className ="media-image">
+                          <section className="thumbnail-container">
+                              <figure  className ="media-image">
                                   <img className="thumbnail-image"
                                        src={item.thumbnail.regular.small} alt={item.title}/>
                                   <button onClick={onHandleClick} className="circle" value={item.title}>
                                   </button>
-                              </div>
-                              <div className ="media-info">
+                              </figure>
+                              <figure className ="media-info">
                                   <span className="year">{item.year}</span>
                                   <span className="dot"></span>
                                   <span className="movie"><img className="movie-icon"
@@ -26,12 +26,12 @@ import tv from "../assets/images/icon-nav-tv-series.svg";
                                       {item.category}</span>
                                   <span className="dot"></span>
                                   <span className="rating">{item.rating}</span>
-                              </div>
-                              <div className ="media-title">{item.title}</div>
-                          </div>
+                              </figure>
+                              <h1 className ="media-title">{item.title}</h1>
+                          </section>
                       </section>
                   ))}
-              </div>
+              </article>
           )
       }
   }

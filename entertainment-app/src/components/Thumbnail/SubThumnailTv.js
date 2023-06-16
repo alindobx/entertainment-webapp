@@ -6,17 +6,17 @@ import React from "react";
 export default function SubThumbNailTv({tvArr, nextId, func, setMarked})  {
     return(
         <>
-            <div key={nextId++} className="thumbnail">
+            <section key={nextId++} className="thumbnail">
                 { tvArr && tvArr.map( (item, id) =>  (
                         <section key={item.id}>
-                            <div className="thumbnail-container">
+                            <section className="thumbnail-container">
                                 <div className="show-hide">
                                     <button>
                                         <img src={play} alt="play cover"/>
                                         <span>Play</span>
                                     </button>
                                 </div>
-                                <div className ="media-image">
+                                <figure className ="media-image">
                                     <img className="thumbnail-image"
                                          src={item.thumbnail.regular.small} alt={item.title}/>
                                     <button
@@ -27,8 +27,8 @@ export default function SubThumbNailTv({tvArr, nextId, func, setMarked})  {
                                         }
                                         data-ele={item.title}>
                                     </button>
-                                </div>
-                                <div className ="media-info">
+                                </figure>
+                                <section className ="media-info">
                                     <span className="year">{item.year}</span>
                                     <span className="dot"></span>
                                     <span className="movie">
@@ -39,12 +39,12 @@ export default function SubThumbNailTv({tvArr, nextId, func, setMarked})  {
                                         {item.category}</span>
                                     <span className="dot"></span>
                                     <span className="rating">{item.rating}</span>
-                                </div>
-                                <div className ="media-title">{item.title}</div>
-                            </div>
+                                </section>
+                                <h1 className ="media-title">{item.title}</h1>
+                            </section>
                         </section>
                   ))}
-            </div>
+            </section>
         </>
     )
 }

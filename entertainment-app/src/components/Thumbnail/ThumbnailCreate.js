@@ -21,11 +21,11 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
         }
     }
     return (
-    <div key={nextId++} className="thumbnail">
+    <section key={nextId++} className="thumbnail">
         {jsonRes && jsonRes.map( (item, id) =>  (
             <section key={item.id}>
-                <div className="thumbnail-container">
-                    <div  className ="media-image">
+                <section className="thumbnail-container">
+                    <figure  className ="media-image">
                         <div className="show-hide">
                             <button>
                                 <img src={play} alt="play cover"/>
@@ -42,8 +42,8 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
                         }
                             data-ele={item.title}>
                         </button>
-                    </div>
-                    <div className ="media-info">
+                    </figure>
+                    <section className ="media-info">
                         <span className="year">{item.year}</span>
                         <span className="dot"></span>
                         <span className="movie"><img className="movie-icon"
@@ -52,11 +52,11 @@ export default function ThumbnailCreate({nextId, jsonRes}) {
                             {item.category}</span>
                         <span className="dot"></span>
                         <span className="rating">{item.rating}</span>
-                    </div>
-                    <div className ="media-title">{item.title}</div>
-                </div>
+                    </section>
+                    <h1 className ="media-title">{item.title}</h1>
+                </section>
             </section>
         ))}
-    </div>
+    </section>
     )
 }

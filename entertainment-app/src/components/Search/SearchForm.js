@@ -60,9 +60,8 @@ export default function SearchForm () {
                     onChange={handleSubmit}
                     onBlur = {() => setShow(false)}
                 />
-
             </form>
-            <div className='search-terms' style={ show === true ? {display:"block"} : {display:"none"} }>
+            <section className='search-terms' style={ show === true ? {display:"block"} : {display:"none"} }>
                 <ul>
                     {state.query === ""
                         ? ""
@@ -70,7 +69,7 @@ export default function SearchForm () {
                             return <NavLink key={post.id} to="/Search" state={{from:{state}}}><li>{post.title}</li></NavLink>;
                         })}
                 </ul>
-            </div>
+            </section>
         </>
     )
 
